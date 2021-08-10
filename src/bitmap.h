@@ -7,8 +7,8 @@
 #include <algorithm>
 #include <cinttypes>
 
-#include "platform_atomics.h"
-
+//#include "platform_atomics.h"
+#include "util.cu"
 
 /*
 GAP Benchmark Suite

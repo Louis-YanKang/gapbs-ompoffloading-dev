@@ -1,7 +1,9 @@
 # See LICENSE.txt for license details.
 
 CXX_FLAGS += -std=c++11 -O3 -Wall
-PAR_FLAG = -fopenmp -mp=gpu -Minfo=mp -DUSE_OMP_ACCELERATOR
+PAR_FLAG = -fopenmp -Minfo=mp -DUSE_OMP_ACCELERATOR
+#-DUSE_OMP_ACCELERATOR 
+#-mp=gpu -Minfo=mp -DUSE_OMP_ACCELERATOR
 
 ifneq (,$(findstring icpc,$(CXX)))
 	PAR_FLAG = -openmp

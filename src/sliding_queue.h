@@ -6,8 +6,8 @@
 
 #include <algorithm>
 
-#include "platform_atomics.h"
-
+//#include "platform_atomics.h"
+#include "util.cu"
 
 /*
 GAP Benchmark Suite

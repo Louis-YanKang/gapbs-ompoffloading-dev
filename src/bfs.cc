@@ -9,7 +9,8 @@
 #include "builder.h"
 #include "command_line.h"
 #include "graph.h"
-#include "platform_atomics.h"
+//#include "platform_atomics.h"
+#include "util.cu"
 #include "pvector.h"
 #include "sliding_queue.h"
 #include "timer.h"
@@ -90,6 +91,7 @@ int64_t TDStep(const Graph &g, pvector<NodeID> *parent,
         if (curr_val < 0) {
 //#pragma omp atomic compare capture
           if (compare_and_swap(parent->operator[](v), curr_val, u)) {
+          //if (comapre_and_swap_atomickernel<<<1,1>>>(parent->operator[](v), curr_val, u) == 1) {
             lqueue->push_back(v);
             scout_count += -curr_val;
           }
@@ -310,6 +312,7 @@ bool BFSVerifier(const Graph &g, NodeID source,
         if (v == parent->operator[](u)) {
           if (depth[v] != depth[u] - 1) {
             cout << "Wrong depths for " << u << " & " << v << endl;
+            cout << "--------depth[v] =" <<depth[v]<< "-----depth[u] ="<<depth[u]<<endl;
             return false;
           }
           parent_found = true;
